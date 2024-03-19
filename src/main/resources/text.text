@@ -7,3 +7,11 @@ HTML의 경우 HTML 엔티티라고 해서, <를 태그의 시작으로 인식 �
 
 //변수 - springEL
 지역변수는 해당 태그 안쪽에서만 사용 가능
+
+//타임리프 기본 객체들
+spring3.0 기준으로 다음과 같은 방법은 지원이 안됨
+<li>request = <span th:text="${#request}"></span></li>
+    <li>response = <span th:text="${#response}"></span></li>
+    <li>session = <span th:text="${#session}"></span></li>
+    <li>servletContext = <span th:text="${#servletContext}"></span></li>
+ 따라서 그냥 모델에다가 넣어서 넘겨줘야 함

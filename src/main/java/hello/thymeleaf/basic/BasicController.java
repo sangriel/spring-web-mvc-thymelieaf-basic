@@ -1,6 +1,10 @@
 package hello.thymeleaf.basic;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +50,27 @@ public class BasicController {
         model.addAttribute("userMap", map);
 
         return "basic/variable";
+    }
+
+    @GetMapping("basic-objects")
+    public String basicObject(HttpSession session, Model model,
+                              HttpServletRequest request,
+                              HttpServletResponse response
+                              ) {
+        session.setAttribute("sessionData","Hello Session");
+        //spring 3.0이상부터는 다음과 같이해야지 html에서 접근이 가능함, requst,response등등
+        //session은 모델에다 안넣어도 그냥 가지고 올 수 있나봄
+        model.addAttribute("request", request);
+        model.addAttribute("response", response);
+        model.addAttribute("servletContext", request.getServletContext());
+        return "basic/basic-objects";
+    }
+
+    @Component("HelloBean")
+    static class HelloBean {
+        public  String hello(String data) {
+            return "Hello " + data;
+        }
     }
 
 
