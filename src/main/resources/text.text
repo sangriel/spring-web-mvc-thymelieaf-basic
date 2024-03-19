@@ -38,5 +38,12 @@ no operation 경우
 ---> 보통 checked라는 속성이 있으면 html은 무조건 check 처리 해버림 하지만 th:checked="false"를 하면
 타임리프에서 checked라는 속성 자체를 빼버림 따라서 false처리가 됨
 
-
-
+//반복 each
+반복 상태 유지
+<tr th:each="user, userStat : ${users}">
+    <td th:text="${userStat.count}">username</td>
+    <td th:text="${user.username}">username</td>
+    <td th:text="${user.age}">0</td>
+ </tr>
+ 일때 두번째 파라미터 userStat을 생략해도 아래에서 userStat사용가능
+ 룰은 지정한 변수명 "user" + "Stat"으로 자동적으로 생성됨
